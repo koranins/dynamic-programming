@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "start": "npx tsc && node fibonacci.js"   
+    "start": "npm run",
+    "fib": "npx tsc && node ./dist/fibonacci.js"
   },
   "devDependencies": {
     "typescript": "^5.3.2"
