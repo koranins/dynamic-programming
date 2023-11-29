@@ -1,7 +1,8 @@
 {
   "scripts": {
     "start": "npm run",
-    "fib": "npx tsc && node ./dist/fibonacci.js"
+    "fib": "npx tsc && node ./dist/fibonacci.js",
+    "coin": "npx tsc && node ./dist/minimum-coins.js"
   },
   "devDependencies": {
     "typescript": "^5.3.2"
