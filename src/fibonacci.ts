@@ -3,17 +3,83 @@
 // F(n) = F(n-1) + F(n-2), F(0) = 0, F(1) = 1
 // F(4) = F(3) + F(2)
 
-const naiveFib = (n: number): number => {
+const neive = (n: number): number => {
+    if (n < 2)  {
+        return n
+    }
+
+    return neive(n - 1) + neive(n - 2)
+}
+
+console.log('naive', neive(8))
+
+
+const topdownFib = (n: number, memo: Map<number, number>): number => {
+    if (memo.has(n)) {
+        return memo.get(n)!
+    }
+
+    if (n < 2) {
+        memo.set(n, n)
+        return memo.get(n)!
+    }
+
+    const value = topdownFib(n - 1, memo) + topdownFib(n - 2, memo) 
+    memo.set(n, value)
+    return memo.get(n)!
+}
+
+console.log('top-down fib', topdownFib(8, new Map()))
+
+const bottomupFib = (n: number): number => {
+    const values = [0, 1]
+
+    for (let i = 2; i <= n; i++) {
+        values.push(values[i - 1] + values[i - 2])
+    }
+
+    return values[n]
+}
+
+console.log('bottom-up fib', bottomupFib(8))
+
+const bottomupOptimized = (n: number): number => {
+    let a = 1, b = 0
+    if (n < 2) {
+        return n 
+    }
+
+    let value = -1
+    for (let i = 2; i <= n; i++) {
+       value = a + b 
+       b = a
+       a = value
+
+       console.log({ value, a, b })
+    }
+
+    return value
+}
+
+console.log('fib optimized', bottomupOptimized(8))
+
+const bottomupOptimizedShort = (n: number): number => {
+    const values = [0, 1]
+
     if (n < 2) {
         return n
     }
 
-    return naiveFib(n - 1) + naiveFib(n - 2)
+    for (let i = 2; i <= n; i++) {
+        const [a, b] = values
+        values.push(a + b)
+        values.shift()
+    }
+
+    return values[1]
 }
 
-console.log('naiveFib', naiveFib(8))
-
-// Recursion
+console.log('bottom-up optimized short', bottomupOptimizedShort(8))
 
 const fib = (n: number, memo: Map<number, number>): number  => {
     if (n < 2) {
@@ -40,7 +106,7 @@ const fib2 = (n: number): number => {
     return vals[n]
 }
 
-console.log('fib2', fib2(8))
+// console.log('fib2', fib2(8))
 
 // Improve memory
 // F  |          a       | b      | c
@@ -91,4 +157,4 @@ const fib4 = (n: number): number => {
     return values.pop()!
 }
 
-console.log('fib4', fib4(8))
+// console.log('fib4', fib4(8))
