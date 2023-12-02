@@ -2,7 +2,8 @@
   "scripts": {
     "start": "npm run",
     "fib": "npx tsc && node ./dist/fibonacci.js",
-    "coin": "npx tsc && node ./dist/minimum-coins.js"
+    "coin": "npx tsc && node ./dist/minimum-coins.js",
+    "maze": "npx tsc && node ./dist/maze.js"
   },
   "devDependencies": {
     "typescript": "^5.3.2"
