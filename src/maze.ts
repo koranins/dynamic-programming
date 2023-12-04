@@ -16,9 +16,13 @@
 // }
 
 
+// https://www.youtube.com/watch?v=IlEsdxuD4lY
+
 const uniquePathsRecursive = (m: number, n: number) => {
     //Initialize and empty grid with 1 as default value
     let dp = new Array(m+1).fill(1).map(x => new Array(n+1).fill(0));
+
+    console.log(dp)
 
     const recur = (r: number, c: number) => {
         //If we have reached to the exit then return 1 as unique path
@@ -42,7 +46,7 @@ const uniquePathsRecursive = (m: number, n: number) => {
 }
 
 console.log('unique path 18x6', uniquePathsRecursive(18, 6))
-console.log('unique path 75x19', uniquePathsRecursive(75, 19))
+// console.log('unique path 75x19', uniquePathsRecursive(75, 19))
 
 const uniquePathsIterative = (m: number, n: number) => {
     //Initialize and empty grid with 1 as default value

@@ -16,14 +16,13 @@ const minIgnoreNull = (currentCount: number | null, nextCount: number): number |
 
 const naive = (amount: number, coins: number[]): number | null => {
     if (amount === 0) {
-        return 0 
+        return 0
     }
 
     let minCount = null
 
     for (const coin of coins) {
         const nextAmount = amount - coin
-
         if (nextAmount < 0) {
             continue
         }
@@ -33,12 +32,14 @@ const naive = (amount: number, coins: number[]): number | null => {
         if (nextCount === null) {
             continue
         }
-        
+
         nextCount++
+
 
         minCount = minCount === null
             ? nextCount
             : Math.min(minCount, nextCount)
+        
     }
 
     return minCount
@@ -85,32 +86,62 @@ const topdown = (amount: number, coins: number[], memo: Map<number, number | nul
 console.log('top-down 13', topdown(13, [1, 4, 5], new Map()))
 console.log('top-down 150', topdown(150, [1, 4, 5], new Map()))
 
-const bottomup = (targetAmount: number, coins: number[]) => {
-    const amounts = [0, ...Array(targetAmount).fill(null)]
-   
-    for (let amount = 1; amount <= targetAmount; amount++) {
-        for (const coin of coins) {
+
+const bottomup = (expectedAmount: number, coins: number[]) => {
+    const minCounts = [0, ...Array(expectedAmount).fill(null)]
+
+    for (let amount = 1; amount <= expectedAmount; amount++) {
+        for (let coin of coins) {
             const nextAmount = amount - coin
+
             if (nextAmount < 0) {
                 continue
             }
 
-            let nextCount = amounts[nextAmount]
+            let nextCount = minCounts[nextAmount]
 
             if (nextCount === null) {
                 continue
             }
 
-            nextCount++
+            nextCount ++
 
-            amounts[amount] = amounts[amount] === null
+            minCounts[amount] = minCounts[amount] === null
                 ? nextCount
-                : Math.min(amounts[amount], nextCount)
+                : Math.min(minCounts[amount], nextCount)
         }
     }
-    
-    return amounts[targetAmount]
+
+    return minCounts[expectedAmount]
 }
+
+
+// const bottomup = (targetAmount: number, coins: number[]) => {
+//     const amounts = [0, ...Array(targetAmount).fill(null)]
+   
+//     for (let amount = 1; amount <= targetAmount; amount++) {
+//         for (const coin of coins) {
+//             const nextAmount = amount - coin
+//             if (nextAmount < 0) {
+//                 continue
+//             }
+
+//             let nextCount = amounts[nextAmount]
+
+//             if (nextCount === null) {
+//                 continue
+//             }
+
+//             nextCount++
+
+//             amounts[amount] = amounts[amount] === null
+//                 ? nextCount
+//                 : Math.min(amounts[amount], nextCount)
+//         }
+//     }
+    
+//     return amounts[targetAmount]
+// }
 
 console.log('bottom-up 13', bottomup(13, [1, 4, 5]))
 console.log('bottom-up 150', bottomup(150, [1, 4, 5]))
