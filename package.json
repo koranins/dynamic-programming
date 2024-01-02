@@ -2,6 +2,8 @@
   "scripts": {
     "start": "npm run",
     "fib": "npx tsc && node ./dist/fibonacci.js",
+    "fib-td": "npx tsc && node ./dist/fibonacci/top-down.js",
+    "fib-bu": "npx tsc && node ./dist/fibonacci/bottom-up.js",
     "coin": "npx tsc && node ./dist/minimum-coins.js",
     "maze": "npx tsc && node ./dist/maze.js"
   },

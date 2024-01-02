@@ -1,3 +1,4 @@
+// how to: https://youtu.be/Hdr64lKQ3e4?t=111
 // Write a function that returns n-th Fibonacci number
 // 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144
 // F(n) = F(n-1) + F(n-2), F(0) = 0, F(1) = 1

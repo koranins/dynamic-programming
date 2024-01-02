@@ -1,3 +1,4 @@
+// how to: https://youtu.be/Hdr64lKQ3e4?t=479
 // Give a set of coin values coins={c1, c2, ..., ck} and a target sum of money m,
 // what's the minimum number of coins that from the sum m?
 // coins: 1 4 5
